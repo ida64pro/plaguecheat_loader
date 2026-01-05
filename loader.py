@@ -13,7 +13,6 @@ def is_admin():
         return False
 
 def get_internal_path(filename):
-    """Определяет путь к файлу, вшитому внутрь EXE"""
     base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
     return os.path.join(base_path, filename)
 
@@ -47,11 +46,10 @@ except Exception as e:
     except Exception as e2:
         print(f"Ошибка инжекта в Steam: {e2}")
 
-# --- Запуск CS2 ---
 time.sleep(5)
 os.startfile('steam://run/730/-allow_third_party_software')
 print('Запуск CS2...')
-time.sleep(30) # Для надежности увеличил до 30 сек
+time.sleep(30) 
 
 try:
     cs2 = Pymem('cs2.exe')
@@ -61,4 +59,5 @@ except Exception as e:
     print(f"Ошибка инжекта в CS2: {e}")
 
 os.startfile('https://t.me/somethingbio')
+
 time.sleep(10)
