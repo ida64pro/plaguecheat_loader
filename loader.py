@@ -17,8 +17,9 @@ def get_internal_path(filename):
     return os.path.join(base_path, filename)
 
 if not is_admin():
-    print("!!! ОШИБКА: Запустите программу от имени АДМИНИСТРАТОРА !!!")
-    time.sleep(5)
+    print("⚠️ Требуются права администратора...")
+    ctypes.windll.shell32.ShellExecuteW(
+        None, "runas", sys.executable, " ".join(sys.argv), None, 1)
     sys.exit()
 
 path_plsteam = get_internal_path('plsteam.dll')
@@ -58,6 +59,5 @@ try:
 except Exception as e:
     print(f"Ошибка инжекта в CS2: {e}")
 
-os.startfile('https://t.me/somethingbio')
 
 time.sleep(10)
